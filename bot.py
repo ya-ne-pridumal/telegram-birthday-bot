@@ -14,7 +14,7 @@ months_ru = {
     "октябрь": 10, "ноябрь": 11, "декабрь": 12
 }
 
-WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET")  # "8e5f96ac832f16518ff1a5a99870827a"
+WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET")  # Например: "8e5f96ac832f16518ff1a5a99870827a"
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Привет! Укажи месяц рождения (пример: март).")
@@ -71,7 +71,7 @@ async def respond(update: Update, context: ContextTypes.DEFAULT_TYPE):
 flask_app = Flask(__name__)
 
 async def setup_webhook(app):
-    webhook_url = os.getenv("WEBHOOK_URL")  # https://your-app.onrender.com
+    webhook_url = os.getenv("WEBHOOK_URL")  # Например: "https://your-app.onrender.com"
     await app.bot.set_webhook(f"{webhook_url}/{WEBHOOK_SECRET}")
 
 telegram_app = ApplicationBuilder().token(os.getenv("TELEGRAM_BOT_TOKEN")).post_init(setup_webhook).build()
